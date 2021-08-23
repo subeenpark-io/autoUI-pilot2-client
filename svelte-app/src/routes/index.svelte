@@ -1,7 +1,7 @@
 <script>
   import { Router, Route } from "svelte-routing";
   import Home from "../components/Home.svelte";
-  import About from "../components/About.svelte";
+  import Thanks from "../components/Thanks.svelte";
   import Blog from "../components/Blog.svelte";
   import Before from "../components/Before.svelte";
   import After from "../components/After.svelte";
@@ -13,7 +13,7 @@
 <Router {url}>
   <div>
     <Route path="blog" component={Blog} />
-    <Route path="about" component={About} />
+    <Route path="thanks" component={Thanks} />
     <Route path="/" component={Home} />
     <Route path="before" component={Before} />
     <Route path="after" component={After} />

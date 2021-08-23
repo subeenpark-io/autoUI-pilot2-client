@@ -2,12 +2,9 @@
   import { Link, navigate } from "svelte-routing";
 
   const handleSubmit = () => {
-    console.log(name, email);
-    navigate("/before", { replace: true });
+    navigate("/thanks", { replace: true });
   };
 
-  let name;
-  let email;
 </script>
 
 <div class="container">
