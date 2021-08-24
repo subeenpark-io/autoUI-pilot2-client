@@ -25,7 +25,8 @@
   };
 
   const makePrediction = () => {
-    console.log(candidates, reason);
+    // console.log(candidates, reason);
+    console.log("make predictions");
     let url = "http://3.37.217.167:8000/api/predictions/";
 
     let response = fetch(url, {

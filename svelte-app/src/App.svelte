@@ -3,12 +3,12 @@
   import "./global.css";
 </script>
 
-<svelte:head>
+<!-- <svelte:head>
   <meta
     http-equiv="Content-Security-Policy"
     content="upgrade-insecure-requests"
   />
-</svelte:head>
+</svelte:head> -->
 
 <main>
   <Router />
