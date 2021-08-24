@@ -2,12 +2,32 @@
   import { Link, navigate } from "svelte-routing";
   const handleSubmit = () => {
     console.log(candidates, reason);
+    let url = "http://3.37.217.167:8000/api/befores/";
+
+    let response = fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        candidates: candidatesString,
+        reasons: reason,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        return data;
+      });
+
     navigate("/after", { replace: true });
   };
 
   let reason;
 
   let candidates = [];
+
+  $: candidatesString = candidates.join(" ");
 
   let array = [
     {

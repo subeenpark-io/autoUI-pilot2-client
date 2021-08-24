@@ -1,10 +1,32 @@
 <script>
   import { Link, navigate } from "svelte-routing";
 
+  let q1;
+  let q2;
+  let q3;
+
   const handleSubmit = () => {
+    let url = "http://3.37.217.167:8000/api/feedbacks/";
+
+    let response = fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        q1: q1,
+        q2: q2,
+        q3: q3,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        return data;
+      });
+
     navigate("/thanks", { replace: true });
   };
-
 </script>
 
 <div class="container">
@@ -16,20 +38,41 @@
       <h5 class="question question1">
         What actions did you perform to make your final decision?
       </h5>
-      <textarea name="" id="" cols="30" rows="10" class="answer answer1" />
+      <textarea
+        name=""
+        id=""
+        cols="30"
+        rows="10"
+        class="answer answer1"
+        bind:value={q1}
+      />
     </div>
     <div class="survey question2">
       <h5 class="question question2">
         Which UI components might help your action?
       </h5>
-      <textarea name="" id="" cols="30" rows="10" class="answer answer2" />
+      <textarea
+        name=""
+        id=""
+        cols="30"
+        rows="10"
+        class="answer answer2"
+        bind:value={q2}
+      />
     </div>
     <div class="survey question3">
       <h5 class="question question3">
         Please design your own page for the process that you performed right
         before.
       </h5>
-      <textarea name="" id="" cols="30" rows="10" class="answer answer3" />
+      <textarea
+        name=""
+        id=""
+        cols="30"
+        rows="10"
+        class="answer answer3"
+        bind:value={q3}
+      />
     </div>
   </div>
   <div class="button">

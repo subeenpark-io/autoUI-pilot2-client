@@ -3,6 +3,25 @@
 
   const handleSubmit = () => {
     console.log(name, email);
+
+    let url = "http://3.37.217.167:8000/api/users/";
+
+    let response = fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        return data;
+      });
+
     navigate("/before", { replace: true });
   };
 

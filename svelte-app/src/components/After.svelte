@@ -3,12 +3,62 @@
 
   const handleSubmit = () => {
     console.log(candidates, reason);
+    let url = "http://3.37.217.167:8000/api/afters/";
+
+    let response = fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        candidates: candidatesString,
+        reasons: reason,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        return data;
+      });
+
     navigate("/posthoc", { replace: true });
+  };
+
+  const makePrediction = () => {
+    console.log(candidates, reason);
+    let url = "http://3.37.217.167:8000/api/predictions/";
+
+    let response = fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        gre: gre,
+        toefl: toefl,
+        sop: sop,
+        lor: lor,
+        cgpa: cgpa,
+        research_experience: research,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        prediction = data.chance_of_admit;
+        return data;
+      });
+
+    prediction = response.chance_of_admit;
+    console.log(response.chance_of_admit);
+    // console.log();
   };
 
   let reason;
 
   let candidates = [];
+
+  $: candidatesString = candidates.join(" ");
 
   let gre;
   let toefl;
@@ -18,6 +68,8 @@
   let research;
 
   let prediction;
+  $: predictionResult =
+    prediction === undefined ? "?" : prediction.toPrecision(3);
 
   let array = [
     {
@@ -239,15 +291,17 @@
           type="checkbox"
           name="research"
           id="research"
-          bind:value={research}
+          bind:checked={research}
         />
       </div>
     </div>
     <div class="predictions-right predictions-column">
       <div class="result">
-        {prediction !== undefined ? prediction : "?"} / 1
+        {predictionResult} / 1
       </div>
-      <button class="btn_predict">Make Prediction</button>
+      <button class="btn_predict" on:click={makePrediction}
+        >Make Prediction</button
+      >
     </div>
   </div>
 
@@ -379,7 +433,7 @@
   }
 
   input {
-    width: 30px;
+    width: 80px;
     margin: auto 10px;
   }
 </style>
