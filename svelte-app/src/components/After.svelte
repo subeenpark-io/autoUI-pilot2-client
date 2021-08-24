@@ -46,12 +46,12 @@
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        prediction = data.probability;
+        prediction = data.chance_of_admit;
         return data;
       });
 
-    prediction = response.probability;
-    console.log(response.probability);
+    prediction = response.chance_of_admit;
+    console.log(response.chance_of_admit);
     // console.log();
   };
 
@@ -304,6 +304,9 @@
         >Make Prediction</button
       >
     </div>
+    <div class="predictions-feature-importance">
+      <img src="/feature_importance.png" alt="feature importance graph" />
+    </div>
   </div>
 
   <div class="forms">
@@ -409,11 +412,19 @@
 
   .predictions-left,
   .predictions-center {
-    width: 40%;
+    width: 25%;
   }
 
   .predictions-right {
     width: 20%;
+  }
+
+  .predictions-feature-importance {
+    width: 30%;
+  }
+
+  .predictions-feature-importance img {
+    width: 100%;
   }
 
   .prediction-row {
