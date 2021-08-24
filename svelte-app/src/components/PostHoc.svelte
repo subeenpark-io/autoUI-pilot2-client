@@ -62,8 +62,7 @@
     </div>
     <div class="survey question3">
       <h5 class="question question3">
-        Please design your own page for the process that you performed right
-        before.
+        Please fill free to leave any comments/ideas about our project!
       </h5>
       <textarea
         name=""
