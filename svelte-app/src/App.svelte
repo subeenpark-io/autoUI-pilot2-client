@@ -1,14 +1,17 @@
 <script>
   import Router from "./routes/index.svelte";
   import "./global.css";
-
-
 </script>
+
+<svelte:head>
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="upgrade-insecure-requests"
+  />
+</svelte:head>
 
 <main>
   <Router />
-
-
 </main>
 
 <style>
